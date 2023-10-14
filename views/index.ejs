@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteName%> | Welcome</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <div id="hAndMContainer">
+        <header>
+          <div id="logoAndNav">
+            <a href="/"
+              ><img
+                id="logo"
+                src="../public/android-chrome-192x192.png"
+                alt="fix logo"
+            /></a>
+            <%-include("partials/header.ejs")-%>
+          </div>
+          <hr />
+          <h1 id="caption">
+            <strong>"Fix",</strong> THE OPTIMUM TASK MANAGEMENT SYSTEM.
+          </h1>
+        </header>
+
+        <main id="indexMain">
+          <div id="indexParagraphs">
+            <p>
+              <strong>Fix</strong> is an application that provides you with a
+              seamless service to properly manage your tasks for productivity.
+            </p>
+            <p>
+              Consedering the fast evolving and highly demanding society we now
+              live in, staying organized is very key to meeting up with targets
+              and be efficient in fixing and getting things done.Therefore,
+              <strong>fix</strong> has been carefully engineered to feature
+              relevant and top notch micro services that put you on top of your
+              games.
+            </p>
+            <p>
+              This system is the answer to cluttered set of activities that
+              leads to missing of deadlines. What are you waiting for?
+            </p>
+          </div>
+          <div id="homeContainer">
+            <p class="before">
+              👉<a id="anchor" href="signup">Get started</a> with
+              <strong>fix</strong>.
+            </p>
+
+            <p class="before">Have you signed up before?</p>
+            <p class="login">
+              👉<a id="anchor" href="/login">Login</a> to <strong>fix</strong>.
+            </p>
+          </div>
+        </main>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>

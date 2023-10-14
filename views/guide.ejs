@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteName%> | Guide</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <div id="hAndMContainer">
+        <header>
+          <div id="logoAndNav">
+            <a href="/"
+              ><img
+                id="logo"
+                src="../public/android-chrome-192x192.png"
+                alt="fix logo"
+            /></a>
+            <%-include("partials/header.ejs")-%>
+          </div>
+          <hr />
+          <h1>THE GUIDELINES</h1>
+        </header>
+        <main id="guideContainer">
+          <P
+            ><strong>Fix</strong> is a perfect to-do-listing application that
+            provides you with a perfect service to record and manage your daily
+            tasks effectively.
+          </P>
+          <h2>
+            Follow the guidelines below to have the best experience using the
+            app.
+          </h2>
+          <ol id="guidelines">
+            <li>
+                You must <strong>signup</strong> to start using the application.
+            </li>
+            <li>
+              When signing up, use a unique username with a password not less
+              than 8 characters.
+            </li>
+            <li>
+              If your desired username is already taking by another user, you
+              will get the message: <strong>"user alredy exist"</strong>.
+              So, you will have to choose another username.
+            </li>
+            <li>
+              Ensure you keep your password written and saved in a secured
+              place.
+            </li>
+            <li>
+              To <strong>login</strong>, use the correct username and password as used when
+              signing up. Else, you will get an error message.
+            </li>
+            <li>
+              In your dashboard, add "what to do" to your
+              list by clicking on the
+              <strong>create_task</strong> button.
+            </li>
+            <li>
+              When a task is completed , click the
+              <strong>pending</strong> button to change the state to
+              <strong>completed</strong>.
+            </li>
+            <li>
+                A task in a "completed" state can be changed back to pending if realized not completed by clicking on the <strong>completed</strong> button.
+            </li>
+            <li>
+              Make sure you delete completed tasks to free your tasks memory.
+            </li>
+            <li>Logout from the app when done to secure your informations.</li>
+          </ol>
+          <a id="anchor" href="/signup">Get statrted</a>
+        </main>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>
