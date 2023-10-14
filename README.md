@@ -1,6 +1,6 @@
 # Fix
 <p align="center">
-  <img src="https://github.com/Sulaimon-Rasheed/Fix/public/apple-touch-icon.png"/>
+  <img src="https://github.com/Sulaimon-Rasheed/Fix/blob/main/public/apple-touch-icon.png"/>
 </p>
 
 #### Fix is todo-listing application that provides you with a seamless service to properly manage your tasks for productivity. 
