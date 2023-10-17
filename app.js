@@ -1,21 +1,12 @@
 const express = require("express")
-require("dotenv").config()
 const bodyParser = require('body-parser')
-const db = require("./config/mongoose")
 const userRoute = require("./users/user.route")
 const taskRoute = require("./tasks/task.route")
 const cookieParser = require("cookie-parser")
 const auth = require("./authentication/auth")
 const taskModel = require("./models/task")
 
-
-
-
-const PORT = process.env.PORT
-
 const app = express()
-
-db.connectToMongoDB()
 
 app.set("view engine", "ejs")
 app.set("views", "views")
@@ -45,6 +36,7 @@ app.get("/dashboard", auth.ensureLogin, async (req,res)=>{
         navs:["Create_task","Guide", "Logout"], user:res.locals.user, taskInfos, date:new Date()
     })
 })
+
 app.get("/existingUser",(req,res)=>{
     res.status(409).render("existingUser", {
         navs:["Signup", "Login"]
@@ -80,11 +72,12 @@ app.get("/logout", (req,res)=>{
     res.redirect("/")
 } )
 
-app.use((err, req, res, next) => {
-    console.log(err);
-    res.status(500).send('Something broke!');
-});
-
-app.listen(PORT, ()=>{
-    console.log(`app listening at http://localhost:${PORT}`)
+app.get("*", (req,res)=>{
+    res.status(404).render("pageNotFound", {navs:["Guide"]})
 })
+
+// app.use((err, req, res, next) => {
+//     res.status(500).send('Something broke!');
+// });
+
+module.exports = app
