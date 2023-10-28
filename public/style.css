@@ -25,6 +25,19 @@ nav{
     flex:9.5
 }
 
+#filterInput{
+padding: 5px;
+text-align: center;
+border: 2px solid brown;
+border-radius: 10px;
+}
+
+#filterBtn{
+padding: 5px;
+text-align: center;
+border-radius: 10px;
+border: 2px solid green;
+}
 
 #logoAndNav{
 display: flex;

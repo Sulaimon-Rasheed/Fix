@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
+const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
-mongoose.promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 class Connection {
   constructor() {
@@ -10,7 +10,7 @@ class Connection {
   }
 
   async connect() {
-    this.mongoServer =await MongoMemoryServer.create();
+    this.mongoServer = await MongoMemoryServer.create();
     const mongoUri = this.mongoServer.getUri();
 
     this.connection = await mongoose.connect(mongoUri, {
@@ -20,7 +20,7 @@ class Connection {
   }
 
   async disconnect() {
-    await mongoose.disconnect()
+    await mongoose.disconnect();
     await this.mongoServer.stop();
   }
 
@@ -29,17 +29,19 @@ class Connection {
     const promises = [];
 
     models.map((model) => {
-      promises.push(this.connection.models[model].delete);
+      promises.push(this.connection.models[model].deleteMany({}));
     });
 
     await Promise.all(promises);
   }
 }
-/**
- * @return {Promise<Object>}
- * @async
- */
 
+/**
+ * Create the initial database connection.
+ *
+ * @async
+ * @return {Promise<Object>}
+ */
 exports.connect = async () => {
   const conn = new Connection();
   await conn.connect();

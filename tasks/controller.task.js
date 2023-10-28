@@ -19,6 +19,23 @@ const createTask = async ({ task_name, state, user_id }) => {
   };
 };
 
+const filterTask =async (req,res)=>{
+try{
+  const state = req.query.state
+  if(state === "pending"){
+  const taskInfos = await taskModel.find({user_id:res.locals.user._id, state:"pending"})
+  res.render("pendingTask", {navs:["Create_task","Guide", "Logout"], user:res.locals.user, taskInfos, date:new Date()})
+  }else if(state === "completed"){
+      const taskInfos = await taskModel.find({user_id:res.locals.user._id, state:"completed"})
+      res.render("completedTask", {navs:["Create_task","Guide", "Logout"], user:res.locals.user, taskInfos, date:new Date()})
+  }else{
+  res.redirect("/dashboard")
+  }
+}catch(error){
+console.log(error.message)
+}
+}
+
 const updateState = (req, res) => {
   const id = req.params.id
   const update = req.body
@@ -42,4 +59,4 @@ const deleteTask = (req, res) => {
       })
 }
 
-module.exports = { createTask, updateState, deleteTask};
+module.exports = { createTask, updateState, deleteTask, filterTask};

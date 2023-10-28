@@ -19,5 +19,7 @@ taskRouter.post("/create", async (req,res)=>{
 
 taskRouter.post("/update/:id", controller.updateState)
 taskRouter.post("/:id", controller.deleteTask)
+taskRouter.get("/filter", controller.filterTask)
+
 
 module.exports = taskRouter

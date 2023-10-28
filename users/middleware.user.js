@@ -12,10 +12,7 @@ const validateUser = async (req, res, next)=>{
         next()
     }
     catch(error){
-        res.status(422).json({
-            message:"invalid information",
-            "error":error.message
-        })
+        res.render("credentialsError", {error:error.message, navs:["Signup", "Login"]})
     }
 }
 
