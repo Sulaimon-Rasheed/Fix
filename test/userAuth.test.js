@@ -1,57 +1,78 @@
-const app = require("../app");
-const supertest = require("supertest");
-const { connect } = require("./database");
-const UserModel = require("../models/user")
+const supertest = require('supertest');
+const app = require('../app');
+const { connect } = require('./database');
+const UserModel = require('../models/user');
 
-describe("user authentication when signing up", () => {
-  let connection;
+// Test suite
+describe('Authentication Tests', () => {
+    let connection
+    // before hook
+    beforeAll(async () => {
+        connection = await connect()
+    })
 
-  beforeAll(async () => {
-    connection = await connect();
-  });
-
-  beforeEach(async () => {
-    await connection.cleanup();
-  });
-
-  afterAll(async () => {
-    await connection.disconnect();
-  });
-
-  it("should register a user", async () => {
-    const response = await supertest(app).post("/users/signup")
-      .set("content-type", "text/html")
-      .send({ username: "Sulaimon", password: "sulaimon123" });
-
-    expect(response.status).toEqual(200);
-    expect(response.messsage).toEqual("successful signup");
-    expect(response.toMatchObject({ username:"Sulaimon" }));
-  });
-});
+    afterEach(async () => {
+        await connection.cleanup()
+    })
+    
+    // after hook
+    afterAll(async () => {
+        await connection.disconnect()
+    })
 
 
-// describe("user authentication when loging in", () => {
-//   let connection;
+    // Test case
+    it('should successfully register a user', async () => {
+        const response = await supertest(app)
+        .post('/users/signup')
+        .type('form')
+        .send({
+            username: "Sulaimon",
+            password: "altschool123",
+            
+        })
 
-//   beforeAll(async () => {
-//     connection = await connect();
-//   });
+        expect(response.status).toEqual(302);
+        expect(response.header.location).toBe("/login") 
+    })
 
-//   beforeEach(async () => {
-//     await connection.cleanup();
-//   });
+    // Test case
+    it('should successfully login a user', async () => {
+        await UserModel.create({
+          username: "Sulaimon",
+          password: "altschool123",
+            
+        });
 
-//   afterAll(async () => {
-//     await connection.disconnect();
-//   });
+        const response = await supertest(app)
+        .post('/users/login')
+        .type('form')
+        .send({
+          username: "Sulaimon",
+          password: "altschool123",
+        })
 
-//   it("should signup a user", async () => {
-//     const response = await supertest(app).post("/users/signup")
-//       .set("content-type", "text/html")
-//       .send({ username: "Sulaimon", password: "sulaimon123" });
+        expect(response.status).toEqual(302)
+        
+        expect(response.header.location).toBe("/dashboard")
+    })
 
-//     expect(response.status).toEqual(200);
-//     expect(response.messsage).toEqual("successful signup");
-//     expect(response.toMatchObject({ username:"Sulaimon" }));
-//   });
-// });
+    it('should not successfully login a user, when user does not exist', async () => {
+        await UserModel.create({
+          username: "Sulaimon",
+          password: "altschool123",
+        });
+
+        const response = await supertest(app)
+        .post('/users/login')
+        .type('form')
+        .send({
+            username: "adewale",
+            password: "altschool123"
+        })
+        .expect(302)
+        
+        expect(response.header.location).toBe("/userNotFound")
+      
+    })
+})
