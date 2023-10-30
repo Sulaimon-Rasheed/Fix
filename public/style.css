@@ -282,3 +282,34 @@ padding:0 24px 0 24px ;
     }
 }
 
+@media (max-width: 500px) {
+   nav ul a{
+    padding: 5px;
+    border-radius: 50%;
+    font-size: smaller;
+   }
+}  
+
+@media (max-width: 300px) {
+    nav ul a{
+     padding: 5px;
+     border-radius: 50%;
+     font-size: 12px;
+    }
+
+    #logo{
+      width:40px;
+      height: 40px;
+    }
+
+    nav{
+     width: 180px;
+    }
+
+    ul{
+        gap:10px;
+        
+    }
+    
+ }  
+
