@@ -37,19 +37,19 @@
             /></a>
             <%-include("partials/header.ejs")-%>
           </div>
-        </header>
         <hr />
+      </header>
         <main>
           <h1 class="topic">Login</h1>
           <form action="users/login" , method="post">
             <label for="username" class="label"
-              >username:
-              <input type="text" , name="username" class="input" /> </label
-            ><br /><br /><br />
+              >username: </label>
+              <input type="text" , name="username" class="input" />
+            <br /><br /><br />
             <label for="password" class="label"
-              >password:
-              <input type="password" , name="password" class="input" /> </label
-            ><br /><br /><br />
+              >password:</label>
+              <input type="password" , name="password" class="input" /> 
+            <br /><br /><br />
             <button type="submit" class="submit">login</button>
           </form>
         </main>
