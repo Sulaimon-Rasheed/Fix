@@ -15,6 +15,18 @@ html,body{
     position: relative;
 }
 
+#rootContainer2{
+    background-color:white;
+    padding:10px 0 0 0;
+    margin: 0;
+    text-align: center;
+    position: relative;
+}
+
+#successRootContainer{
+    background-color:white; 
+}
+
 #logo{
     width:50px;
     height: 50px;
@@ -120,7 +132,9 @@ span{
 table{
     border: 2px solid blue;
     margin-top: 30px;
+    box-sizing:content-box;
 }
+
 td{
     padding: 10px;
     border: 2px solid blue;
@@ -152,6 +166,7 @@ th{
 
 #createContainer{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 30px;
@@ -159,13 +174,15 @@ th{
     margin-top: 100px;
 }
 
-#createInput{
-    padding: 20px;
+#createInput, #dateInput{
+    padding: 10px;
     width:300px;
     border-radius:20px;
     border: none;
-    font-size: 20px;
+    font-size: 16px;
+    text-align: center;
 }
+
 .input{
     padding: 5px;
     width:200px;
@@ -191,6 +208,11 @@ th{
 
 .topic{
     margin-bottom: 50px;
+}
+
+.createHead{
+   margin-top: 0; 
+   color:brown;
 }
 
 #homeContainer{
@@ -278,6 +300,28 @@ padding:0 24px 0 24px ;
     vertical-align:middle;
 }
 
+#successMark{
+    margin-top: 20px;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+.check{
+    color: brown;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#verifiedLog{
+    text-decoration: none;
+    border: 2px solid burlywood;
+    padding: 10px;
+    color: brown;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
 @media (min-height: 896px) {
     main{
         margin-bottom:850px ;
@@ -288,6 +332,19 @@ padding:0 24px 0 24px ;
    nav ul a{
     padding: 5px;
     border-radius: 50%;
+    font-size: 12px;
+   }
+
+   /* table{
+    width: 50%;
+   } */
+
+   td,th{
+    padding: 3px;
+    font-size: 12px;
+   }
+
+   #state{
     font-size: 12px;
    }
 
@@ -329,7 +386,21 @@ ul{
     #welcome{
         margin-top: 70px;
     }
-    
+
+    td,th{
+        padding: 2px;
+        font-size: 10px;
+       }
+
+       #state{
+        font-size: 8px;
+       }
+
+       #delIcon{
+        width:20px;
+        height: 20px;
+    }
+
     nav{
     width: 100px;
     justify-content:center

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title>Fix | Successful signup</title>
+  </head>
+  <body>
+    <header>
+      <div id="logoAndNav">
+        <a href="/"
+          ><img
+            id="logo"
+            src="../public/android-chrome-192x192.png"
+            alt="fix logo"
+        /></a>
+        <%-include("partials/header.ejs")-%>
+      </div>
+      <hr />
+    </header>
+    <div id="rootContainer2" id="successRootContainer">
+      <div id="hAndMContainer">
+        <main>
+            <h1>Successful signup</h1>
+        <img src="../public/success_mark.png" alt="success mark" id="successMark">
+          <h1><%=message%></h1>
+          <p class="check">We have sent a link to your email to get verified</p>
+          <p class="check">Check your email.</p>
+        </main>
+      </div>
+    </div>
+    <footer>
+      <p>
+        Send us a mail &rBarr;
+        <a href="mailto:maito4me@gmail.com"
+          ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+        /></a>
+      </p>
+      <%-include("partials/footer.ejs")-%>
+    </footer>
+  </body>
+</html>

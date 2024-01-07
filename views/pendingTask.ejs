@@ -66,6 +66,8 @@
               <tr>
                 <th>WHAT TO DO (TASKS)</th>
                 <th>STATE</th>
+                <th>CREATED DATE</th>
+                <th>DUE DATE</th>
                 <th></th>
               </tr>
               <%taskInfos.forEach(taskInfo=>{%> <%if(taskInfo.state ==
@@ -92,7 +94,8 @@
                     </button>
                   </form>
                 </td>
-
+                <td><%=taskInfo.created_date%></td>
+                <td><%=taskInfo.due_date%></td>
                 <td>
                   <form action="/tasks/<%=taskInfo._id%>" method="DELETE">
                     <button

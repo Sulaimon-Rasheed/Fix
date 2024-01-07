@@ -1,16 +1,23 @@
 const taskModel = require("../models/task");
+const {DateTime} = require("luxon")
 
 
-const createTask = async ({ task_name, state, user_id }) => {
-  const taskInfo = { task_name, state, user_id };
+const createTask = async ({ task_name, state, user_id, createdDate, dueDate}) => {
+  const taskInfo = { task_name, state, user_id, createdDate, dueDate };
   if (!taskInfo) {
     return {
       message: "invalid info.",
       code: 422,
     };
   }
-
-  const task = await taskModel.create(taskInfo);
+  const luxonDueDate = DateTime.fromISO(taskInfo.dueDate).toFormat('LLL d, yyyy \'at\' HH:mm');
+  const task = await taskModel.create({
+    task_name:taskInfo.task_name,
+    state:taskInfo.state,
+    created_date:taskInfo.createdDate,
+    due_date:luxonDueDate,
+    user_id:taskInfo.user_id
+  });
 
   return {
     message: "Task successfully created",

@@ -5,8 +5,11 @@ const taskRoute = require("./tasks/task.route")
 const cookieParser = require("cookie-parser")
 const auth = require("./authentication/auth")
 const taskModel = require("./models/task")
+const session = require("express-session")
 
 const app = express()
+
+require("./util/scheduler")
 
 app.set("view engine", "ejs")
 app.set("views", "views")
@@ -15,11 +18,19 @@ app.locals.siteName = "Fix"
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.use(cookieParser())
+app.use(session({
+    secret:"rasmon12",
+    cookie:{maxAge:60000},
+    resave:true,
+    saveUninitialized:true
+  }))
 app.use("/users", userRoute)
 app.use("/tasks", auth.ensureLogin, taskRoute)
 app.use("/public", express.static("public"))
 
 app.get("/", (req,res)=>{
+    const tasks = taskModel.find().populate("user_id", "username email")
+    console.log(tasks)
     res.status(200).render("index",{navs:["Guide", "Signup", "Dashboard"]})
 })
 app.get("/signup", (req,res)=>{
@@ -67,6 +78,30 @@ app.get("/guide", (req,res)=>{
     })
 })
 
+app.get("/serverError/:message", (req,res)=>{
+    const message = req.params.message
+    return res.render("serverError", {navs:["signup"], message})
+})
+
+app.get("/errorHandler/:message", (req,res)=>{
+    const message = req.params.message
+    return res.render("errorHandler", {navs:["signup"], message},)
+})
+
+app.get("/successfulVerification/:message", (req,res)=>{
+    const message = req.params.message
+    res.status(200).render("successfulVerification", {
+        navs:["Signup","Login", "Dashboard"], message
+    })
+})
+
+app.get("/successfulSignup/:message", (req,res)=>{
+    const message = req.params.message
+    res.status(200).render("successfulSignup", {
+        navs:["Guide"], message
+    })
+})
+
 app.get("/logout", (req,res)=>{
     res.clearCookie("jwt")
     res.redirect("/")
@@ -76,8 +111,9 @@ app.get("*", (req,res)=>{
     res.status(404).render("pageNotFound", {navs:["Guide"]})
 })
 
-// app.use((err, req, res, next) => {
-//     res.status(500).send('Something broke!');
-// });
+app.use((err, req, res, next) => {
+    res.redirect(`/serverError/${err.message}`)
+    next()
+});
 
 module.exports = app

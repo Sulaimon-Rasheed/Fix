@@ -40,11 +40,14 @@
           <span id="date"><%=date%></span>
           <hr />
         </header>
+        
         <main id="createContainer">
+          <h2 class="createHead">Create task</h2>
           <form action="/tasks/create" , method="post">
-            <label for="task_name">What do you want to do ?</label><br /><br />
+            <label for="task_name">Task name: </label>
             <input type="text" name="task_name" id="createInput" /><br /><br />
-
+            <label for="dueDate">Due date: </label>
+            <input type="datetime-local" name="dueDate" id="dateInput"><br><br>
             <button type="submit" class="submit">Submit</button>
           </form>
         </main>
